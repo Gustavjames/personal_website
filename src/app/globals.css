@@ -108,6 +108,24 @@
   .backface-hidden {
     backface-visibility: hidden;
   }
+
+  .writing-mode-vertical-rl {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  /* Flip Card Effects */
+  .transform-style-preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+
+  .hover\:rotate-y-180:hover {
+    transform: rotateY(180deg);
+  }
 }
 
 /* Custom scrollbar */

@@ -14,25 +14,20 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
           <div className="mb-6">
-            <h3 className="text-2xl font-bold mb-2 terminal-text">GUSTAV_JAMES</h3>
-            <p className="text-cyan-400 terminal-text">FULL_STACK_DEV | CYBERSECURITY_SPECIALIST | NETWORK_ENGINEER</p>
+            <h3 className="text-2xl font-bold mb-2">Gustav James</h3>
+            <p className="text-cyan-400">Cybersecurity Specialist | Cryptography Expert | AI Model Trainer</p>
           </div>
 
           <div className="mb-8">
-            <div className="terminal-text text-sm text-green-400 mb-4">
-              &gt; SYSTEM_STATUS: ONLINE<br />
-              &gt; SECURITY_LEVEL: MAXIMUM<br />
-              &gt; READY_FOR_COLLABORATION
+            <div className="text-sm text-green-400 mb-4">
+              Cybersecurity expert<br />
+              Cryptography specialist<br />
+              AI model trainer
             </div>
           </div>
 
           <div className="flex items-center justify-center space-x-2 mb-8">
-            <span className="text-gray-400 terminal-text">© 2024 GUSTAV_JAMES. ALL_RIGHTS_RESERVED.</span>
-            <span className="text-gray-500">|</span>
-            <span className="text-gray-400 flex items-center space-x-1 terminal-text">
-              <span>MADE_WITH</span>
-              <span className="text-green-400">❤️</span>
-            </span>
+            <span className="text-gray-400">© 2024 Gustav James. All rights reserved.</span>
           </div>
         </div>
       </div>

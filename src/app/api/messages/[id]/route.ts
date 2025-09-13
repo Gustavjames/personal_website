@@ -9,10 +9,10 @@ export async function PATCH(
   try {
     await connectDB();
 
+    const { id } = params;
     const { status, isRead } = await request.json();
-    const messageId = params.id;
 
-    if (!messageId) {
+    if (!id) {
       return NextResponse.json(
         { error: 'Message ID is required' },
         { status: 400 }
@@ -21,10 +21,10 @@ export async function PATCH(
 
     const updateData: any = {};
     if (status) updateData.status = status;
-    if (typeof isRead === 'boolean') updateData.isRead = isRead;
+    if (isRead !== undefined) updateData.isRead = isRead;
 
     const message = await Message.findByIdAndUpdate(
-      messageId,
+      id,
       updateData,
       { new: true }
     );
@@ -58,16 +58,16 @@ export async function DELETE(
   try {
     await connectDB();
 
-    const messageId = params.id;
+    const { id } = params;
 
-    if (!messageId) {
+    if (!id) {
       return NextResponse.json(
         { error: 'Message ID is required' },
         { status: 400 }
       );
     }
 
-    const message = await Message.findByIdAndDelete(messageId);
+    const message = await Message.findByIdAndDelete(id);
 
     if (!message) {
       return NextResponse.json(

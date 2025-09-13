@@ -1,23 +1,21 @@
 'use client';
 
 import { useState } from 'react';
-import { Menu, X, User, LogOut } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 interface NavbarProps {
-  user: { email: string; name: string } | null;
-  onLogin: () => void;
-  onLogout: () => void;
+  // No props needed for simple navigation
 }
 
-const Navbar = ({ user, onLogin, onLogout }: NavbarProps) => {
+const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#contact', label: 'Contact' }
+    { href: '#home', label: 'home' },
+    { href: '#about', label: 'about' },
+    { href: '#projects', label: 'projects' },
+    { href: '#skills', label: 'skills' },
+    { href: '#contact', label: 'contact' }
   ];
 
   const scrollToSection = (href: string) => {
@@ -38,7 +36,7 @@ const Navbar = ({ user, onLogin, onLogout }: NavbarProps) => {
               onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }}
               className="text-2xl font-bold text-white hover:text-gray-200 transition-colors terminal-text"
             >
-              GUSTAV_JAMES
+              $ gustav@james:~$
             </a>
           </div>
 
@@ -49,35 +47,11 @@ const Navbar = ({ user, onLogin, onLogout }: NavbarProps) => {
                   key={item.href}
                   href={item.href}
                   onClick={(e) => { e.preventDefault(); scrollToSection(item.href); }}
-                  className="text-white/80 hover:text-white px-4 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-white/10 terminal-text"
+                  className="text-green-400 hover:text-green-300 px-4 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-green-400/10 terminal-text"
                 >
-                  {item.label}
+                  ./{item.label}
                 </a>
               ))}
-              
-              {/* User Section */}
-              <div className="flex items-center space-x-4">
-                {user ? (
-                  <div className="flex items-center space-x-3">
-                    <div className="text-sm text-green-400 terminal-text">
-                      &gt; {user.name}
-                    </div>
-                    <button
-                      onClick={onLogout}
-                      className="flex items-center space-x-1 px-3 py-2 bg-green-900/50 text-green-400 rounded-lg hover:bg-green-800/50 transition-colors terminal-text border border-green-600"
-                    >
-                      <span>LOGOUT</span>
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    onClick={onLogin}
-                    className="flex items-center space-x-2 px-4 py-2 bg-green-900/50 text-green-400 rounded-lg hover:bg-green-800/50 transition-colors terminal-text border border-green-600"
-                  >
-                    <span>LOGIN</span>
-                  </button>
-                )}
-              </div>
             </div>
           </div>
 
@@ -99,35 +73,11 @@ const Navbar = ({ user, onLogin, onLogout }: NavbarProps) => {
                   key={item.href}
                   href={item.href}
                   onClick={(e) => { e.preventDefault(); scrollToSection(item.href); }}
-                  className="text-white/80 hover:text-white block px-3 py-2 text-base font-medium transition-colors rounded-lg hover:bg-white/10 terminal-text"
+                  className="text-green-400 hover:text-green-300 block px-3 py-2 text-base font-medium transition-colors rounded-lg hover:bg-green-400/10 terminal-text"
                 >
-                  {item.label}
+                  ./{item.label}
                 </a>
               ))}
-              
-              {/* Mobile User Section */}
-              <div className="pt-2 border-t border-white/20">
-                {user ? (
-                  <div className="space-y-2">
-                    <div className="text-sm text-green-400 terminal-text px-3 py-2">
-                      &gt; {user.name}
-                    </div>
-                    <button
-                      onClick={onLogout}
-                      className="flex items-center space-x-2 w-full px-3 py-2 bg-green-900/50 text-green-400 rounded-lg hover:bg-green-800/50 transition-colors terminal-text border border-green-600"
-                    >
-                      <span>LOGOUT</span>
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    onClick={onLogin}
-                    className="flex items-center space-x-2 w-full px-3 py-2 bg-green-900/50 text-green-400 rounded-lg hover:bg-green-800/50 transition-colors terminal-text border border-green-600"
-                  >
-                    <span>LOGIN</span>
-                  </button>
-                )}
-              </div>
             </div>
           </div>
         )}

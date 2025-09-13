@@ -19,7 +19,7 @@ const Projects = () => {
             &gt; LOADING PROJECT_DATABASE...
           </div>
           <h2 className="text-4xl font-bold text-white mb-4 terminal-text">FEATURED_PROJECTS</h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-cyan-400 mx-auto rounded-full hacker-glow"></div>
+          <div className="w-16 h-1 bg-green-400 mx-auto rounded-full"></div>
         </div>
 
         <Interactive3DCardGrid />

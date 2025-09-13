@@ -4,9 +4,9 @@ import { skills } from '@/data/personalData';
 
 const Skills = () => {
   const skillCategories = {
-    frontend: skills.filter(skill => skill.category === 'frontend'),
-    backend: skills.filter(skill => skill.category === 'backend'),
-    tools: skills.filter(skill => skill.category === 'tools')
+    java: skills.filter(skill => skill.category === 'java'),
+    cybersecurity: skills.filter(skill => skill.category === 'cybersecurity'),
+    cryptography: skills.filter(skill => skill.category === 'cryptography')
   };
 
   return (
@@ -20,39 +20,42 @@ const Skills = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <div className="terminal-text text-sm mb-4">
-            &gt; LOADING SKILL_MATRIX...
+        <div className="text-center mb-12">
+          <div className="inline-block">
+            <h2 className="text-3xl font-bold text-white mb-3">Skills & Expertise</h2>
+            <div className="w-12 h-0.5 bg-green-400 mx-auto rounded-full"></div>
           </div>
-          <h2 className="text-4xl font-bold text-white mb-4 terminal-text">SKILLS_&_EXPERTISE</h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-cyan-400 mx-auto rounded-full hacker-glow"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {Object.entries(skillCategories).map(([category, categorySkills]) => (
-            <div key={category} className="glass rounded-2xl p-8 hacker-glow">
-              <div className="text-center mb-8">
-                <div className="text-4xl mb-4 terminal-text">
-                  {category === 'frontend' ? '🎨' : category === 'backend' ? '⚙️' : '🛠️'}
+            <div key={category} className="glass rounded-xl p-5 hacker-glow hover:scale-105 transition-transform duration-300">
+              <div className="text-center mb-5">
+                <div className="inline-block px-3 py-1 bg-green-400/10 rounded-full mb-3">
+                  <h3 className="text-sm font-bold text-green-400 uppercase tracking-wide">
+                    {category === 'java' ? 'Java Dev' : category === 'cybersecurity' ? 'Security' : 'Crypto'}
+                  </h3>
                 </div>
-                <h3 className="text-2xl font-bold text-white terminal-text">
-                  {category === 'frontend' ? 'FRONTEND_DEV' : category === 'backend' ? 'BACKEND_DEV' : 'CYBERSECURITY_&_TOOLS'}
-                </h3>
               </div>
 
-              <div className="space-y-6">
-                {categorySkills.map((skill) => (
-                  <div key={skill.name} className="skill-item">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium text-green-400 terminal-text">{skill.name}</span>
-                      <span className="text-sm text-cyan-400 terminal-text">{skill.level}%</span>
+              <div className="space-y-2.5">
+                {categorySkills.map((skill, index) => (
+                  <div key={skill.name} className="group relative">
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-xs font-medium text-green-400 group-hover:text-green-300 transition-colors truncate pr-2">{skill.name}</span>
+                      <span className="text-xs text-cyan-400 font-mono">{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden border border-green-400/30">
+                    <div className="relative w-full bg-gray-800/50 rounded-full h-1 overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-green-400 to-cyan-400 rounded-full transition-all duration-1000 hacker-glow"
+                        className="h-full bg-green-400 rounded-full transition-all duration-1000 group-hover:bg-green-300 relative"
                         style={{ width: `${skill.level}%` }}
-                      />
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 rounded-full"></div>
+                      </div>
                     </div>
+                    {skill.level >= 90 && (
+                      <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    )}
                   </div>
                 ))}
               </div>

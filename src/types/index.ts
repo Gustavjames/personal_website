@@ -11,7 +11,7 @@ export interface Project {
 export interface Skill {
   name: string;
   level: number;
-  category: 'frontend' | 'backend' | 'tools';
+  category: 'java' | 'cybersecurity' | 'cryptography';
 }
 
 export interface ContactInfo {
@@ -32,6 +32,7 @@ export interface PersonalInfo {
   subtitle: string;
   description: string;
   about: string;
+  image?: string;
   stats: {
     projects: number;
     experience: string;

@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Code, Database, Shield, Zap, Terminal, Lock } from 'lucide-react';
+import { motion, useMotionValue, useSpring, useTransform, useDragControls } from 'framer-motion';
 
 interface CardProps {
   title: string;
@@ -16,7 +15,9 @@ interface CardProps {
 
 const Interactive3DCard = ({ title, description, icon, gradient, tech, status, index }: CardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const dragControls = useDragControls();
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -24,11 +25,11 @@ const Interactive3DCard = ({ title, description, icon, gradient, tech, status, i
   const mouseXSpring = useSpring(x);
   const mouseYSpring = useSpring(y);
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["12deg", "-12deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-12deg", "12deg"]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || isDragging) return;
 
     const rect = cardRef.current.getBoundingClientRect();
     const width = rect.width;
@@ -42,9 +43,20 @@ const Interactive3DCard = ({ title, description, icon, gradient, tech, status, i
   };
 
   const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
+    if (!isDragging) {
+      x.set(0);
+      y.set(0);
+      setIsHovered(false);
+    }
+  };
+
+  const handleDragStart = () => {
+    setIsDragging(true);
     setIsHovered(false);
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
   };
 
   return (
@@ -52,16 +64,30 @@ const Interactive3DCard = ({ title, description, icon, gradient, tech, status, i
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={() => !isDragging && setIsHovered(true)}
+      drag
+      dragControls={dragControls}
+      dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
+      dragElastic={0.1}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
       style={{
-        rotateY: rotateY,
-        rotateX: rotateX,
+        rotateY: isDragging ? 0 : rotateY,
+        rotateX: isDragging ? 0 : rotateX,
         transformStyle: "preserve-3d",
+        x: isDragging ? undefined : 0,
+        y: isDragging ? undefined : 0,
+        transformOrigin: "center center",
       }}
-      className="relative w-full h-80 perspective-1000"
+      className="relative w-full h-80 perspective-1000 cursor-grab active:cursor-grabbing"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
+      whileDrag={{ 
+        scale: 1.05,
+        rotateZ: 5,
+        zIndex: 1000
+      }}
     >
       <motion.div
         style={{
@@ -75,7 +101,7 @@ const Interactive3DCard = ({ title, description, icon, gradient, tech, status, i
             isHovered ? 'shadow-2xl' : 'shadow-lg'
           }`}
           style={{
-            transform: "translateZ(75px)",
+            transform: "translateZ(0px)",
             transformStyle: "preserve-3d",
           }}
           whileHover={{ scale: 1.02 }}
@@ -94,14 +120,7 @@ const Interactive3DCard = ({ title, description, icon, gradient, tech, status, i
           {/* Content */}
           <div className="relative z-10 p-6 h-full flex flex-col">
             {/* Header */}
-            <div className="flex items-center justify-between mb-4">
-              <motion.div
-                className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center hacker-glow"
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
-              >
-                <span className="text-black terminal-text font-bold">[G]</span>
-              </motion.div>
+            <div className="flex items-center justify-end mb-4">
               <div className="text-right">
                 <div className="text-xs text-green-400 terminal-text mb-1">
                   &gt; STATUS
@@ -174,7 +193,7 @@ const Interactive3DCard = ({ title, description, icon, gradient, tech, status, i
         <motion.div
           className="absolute inset-0 rounded-2xl bg-black/20"
           style={{
-            transform: "translateZ(-75px)",
+            transform: "translateZ(-10px)",
             filter: "blur(20px)",
           }}
           animate={{
@@ -191,39 +210,40 @@ const Interactive3DCard = ({ title, description, icon, gradient, tech, status, i
 const Interactive3DCardGrid = () => {
   const cards = [
     {
-      title: "Secure Dating App",
-      description: "A privacy-focused dating application with advanced safety features, real-time verification, and secure communication protocols.",
+      title: "Java Security Framework",
+      description: "A comprehensive Java-based security framework for enterprise applications with advanced encryption and authentication mechanisms.",
       icon: null,
       gradient: "bg-gradient-to-br from-green-600 to-green-800",
-      tech: ["React.js", "Node.js", "MongoDB", "Socket.io", "JWT", "Encryption"],
+      tech: ["Java", "Spring Boot", "Spring Security", "JWT", "AES", "RSA"],
       status: "IN_DEVELOPMENT"
     },
     {
-      title: "Network Security Tool",
-      description: "Advanced network monitoring and security analysis tool with real-time threat detection and automated response systems.",
+      title: "Cryptographic Library",
+      description: "Java library implementing various cryptographic algorithms including RSA, AES, and custom hash functions for secure data processing.",
       icon: null,
       gradient: "bg-gradient-to-br from-green-700 to-green-900",
-      tech: ["Python", "Kali Linux", "Wireshark", "Docker", "Redis"],
+      tech: ["Java", "BouncyCastle", "JCA", "Maven", "JUnit", "Gradle"],
       status: "ACTIVE"
     },
     {
-      title: "Cybersecurity Dashboard",
-      description: "Comprehensive security monitoring dashboard with threat intelligence, vulnerability assessment, and incident response tools.",
+      title: "AI Threat Detection",
+      description: "Java-based machine learning system for real-time cybersecurity threat detection using neural networks and pattern recognition.",
       icon: null,
       gradient: "bg-gradient-to-br from-green-800 to-black",
-      tech: ["Next.js", "TypeScript", "PostgreSQL", "GraphQL", "Redis"],
+      tech: ["Java", "Weka", "TensorFlow", "Spring", "Kafka", "Redis"],
       status: "DEPLOYED"
     }
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
       {cards.map((card, index) => (
-        <Interactive3DCard
-          key={index}
-          {...card}
-          index={index}
-        />
+        <div key={index} className="relative">
+          <Interactive3DCard
+            {...card}
+            index={index}
+          />
+        </div>
       ))}
     </div>
   );

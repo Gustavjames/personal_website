@@ -70,7 +70,7 @@ const Contact = () => {
             &gt; INITIALIZING CONTACT_PROTOCOL...
           </div>
           <h2 className="text-4xl font-bold text-white mb-4 terminal-text">CONTACT_ME</h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-cyan-400 mx-auto rounded-full hacker-glow"></div>
+          <div className="w-16 h-1 bg-green-400 mx-auto rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -84,34 +84,19 @@ const Contact = () => {
             </p>
 
             <div className="space-y-6 mb-8">
-              <div className="flex items-center space-x-4 p-4 glass rounded-xl hover:bg-green-900/20 transition-colors duration-300 hacker-glow">
-                <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
-                  <span className="text-2xl terminal-text">📧</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-white terminal-text">EMAIL</h4>
-                  <p className="text-cyan-400 terminal-text">{contactInfo.email}</p>
-                </div>
+              <div className="p-4 glass rounded-xl hover:bg-green-900/20 transition-colors duration-300 hacker-glow">
+                <h4 className="font-semibold text-green-400 terminal-text mb-2">&gt; EMAIL</h4>
+                <p className="text-green-300 terminal-text">{contactInfo.email}</p>
               </div>
               
-              <div className="flex items-center space-x-4 p-4 glass rounded-xl hover:bg-green-900/20 transition-colors duration-300 hacker-glow">
-                <div className="w-12 h-12 bg-cyan-600 rounded-full flex items-center justify-center">
-                  <span className="text-2xl terminal-text">📱</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-white terminal-text">PHONE</h4>
-                  <p className="text-cyan-400 terminal-text">{contactInfo.phone}</p>
-                </div>
+              <div className="p-4 glass rounded-xl hover:bg-green-900/20 transition-colors duration-300 hacker-glow">
+                <h4 className="font-semibold text-green-400 terminal-text mb-2">&gt; PHONE</h4>
+                <p className="text-green-300 terminal-text">{contactInfo.phone}</p>
               </div>
               
-              <div className="flex items-center space-x-4 p-4 glass rounded-xl hover:bg-green-900/20 transition-colors duration-300 hacker-glow">
-                <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
-                  <span className="text-2xl terminal-text">📍</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-white terminal-text">LOCATION</h4>
-                  <p className="text-cyan-400 terminal-text">{contactInfo.location}</p>
-                </div>
+              <div className="p-4 glass rounded-xl hover:bg-green-900/20 transition-colors duration-300 hacker-glow">
+                <h4 className="font-semibold text-green-400 terminal-text mb-2">&gt; LOCATION</h4>
+                <p className="text-green-300 terminal-text">{contactInfo.location}</p>
               </div>
             </div>
           </div>
@@ -205,7 +190,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-green-600 to-cyan-600 text-black font-semibold py-3 px-6 rounded-lg hover:from-green-700 hover:to-cyan-700 transition-all duration-300 terminal-text hacker-glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="w-full bg-green-600 text-black font-semibold py-3 px-6 rounded-lg hover:bg-green-700 transition-all duration-300 terminal-text disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
                 {isSubmitting ? (
                   <>
