@@ -10,8 +10,8 @@ interface LoginModalProps {
 }
 
 const LoginModal = ({ isOpen, onClose, onLogin }: LoginModalProps) => {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState('gustavjames382@gmail.com');
+  const [name, setName] = useState('Gustav James');
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
