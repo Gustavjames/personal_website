@@ -7,11 +7,11 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { href: '#home', label: '首页' },
-    { href: '#about', label: '关于我' },
-    { href: '#projects', label: '项目' },
-    { href: '#skills', label: '技能' },
-    { href: '#contact', label: '联系我' }
+    { href: '#home', label: 'Home' },
+    { href: '#about', label: 'About' },
+    { href: '#projects', label: 'Projects' },
+    { href: '#skills', label: 'Skills' },
+    { href: '#contact', label: 'Contact' }
   ];
 
   const scrollToSection = (href: string) => {
@@ -32,7 +32,7 @@ const Navbar = () => {
               onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }}
               className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors"
             >
-              YourName
+              Gustav James
             </a>
           </div>
 

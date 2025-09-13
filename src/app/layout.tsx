@@ -5,13 +5,13 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "YourName - 全栈开发者 | UI/UX设计师",
-  description: "专业的全栈开发者，专注于创造美观、实用的数字体验。提供前端开发、后端开发、UI/UX设计等服务。",
-  keywords: "全栈开发, 前端开发, 后端开发, UI设计, UX设计, React, Next.js, TypeScript",
-  authors: [{ name: "YourName" }],
+  title: "Gustav James - Full Stack Developer | Cybersecurity Specialist",
+  description: "Professional full-stack developer specializing in secure digital solutions. Offering frontend development, backend development, cybersecurity, and network engineering services.",
+  keywords: "full stack development, frontend development, backend development, cybersecurity, network security, React, Next.js, TypeScript, Kali Linux, Node.js",
+  authors: [{ name: "Gustav James" }],
   openGraph: {
-    title: "YourName - 全栈开发者",
-    description: "专业的全栈开发者，专注于创造美观、实用的数字体验",
+    title: "Gustav James - Full Stack Developer",
+    description: "Professional full-stack developer specializing in secure digital solutions",
     type: "website",
   },
 };

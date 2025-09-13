@@ -1,14 +1,14 @@
 import { PersonalInfo, Project, Skill, ContactInfo } from '@/types';
 
 export const personalInfo: PersonalInfo = {
-  name: "YourName",
-  title: "全栈开发者",
-  subtitle: "全栈开发者 | UI/UX设计师 | 创意工程师",
-  description: "我专注于创造美观、实用的数字体验，将创意转化为现实。热爱学习新技术，追求代码的优雅和用户体验的完美。",
-  about: "我是一名充满激情的全栈开发者，拥有5年的Web开发经验。我热爱创造美观、实用的数字产品，并始终关注用户体验。我的技能涵盖前端开发（React, Vue.js, TypeScript）、后端开发（Node.js, Python, Go）以及云服务部署。我享受学习新技术的过程，并乐于将创新想法转化为现实。",
+  name: "Gustav James",
+  title: "Full Stack Developer",
+  subtitle: "Full Stack Developer | Cybersecurity Specialist | Network Engineer",
+  description: "I specialize in creating secure, efficient digital solutions and transforming innovative ideas into reality. Passionate about learning new technologies and pursuing code elegance and perfect user experience.",
+  about: "I am a passionate full-stack developer with expertise in cybersecurity and network engineering. I love creating secure, efficient digital products while always focusing on user experience. My skills span frontend development (React.js, TypeScript), backend development (Node.js), cybersecurity (Kali Linux), and network administration. I enjoy the process of learning new technologies and am eager to turn innovative ideas into reality.",
   stats: {
-    projects: 50,
-    experience: "5年+",
+    projects: 25,
+    experience: "3+ years",
     satisfaction: 100
   }
 };
@@ -16,25 +16,25 @@ export const personalInfo: PersonalInfo = {
 export const projects: Project[] = [
   {
     id: "1",
-    title: "电商平台",
-    description: "一个现代化的电商平台，使用React和Node.js构建，包含完整的购物车、支付和用户管理功能。",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+    title: "Secure Dating App",
+    description: "A privacy-focused dating application with advanced safety features, real-time verification, and secure communication protocols. Currently in development with emphasis on user safety and data protection.",
+    technologies: ["React.js", "Node.js", "MongoDB", "Socket.io", "JWT", "Encryption"],
     liveUrl: "#",
     githubUrl: "#"
   },
   {
     id: "2",
-    title: "任务管理应用",
-    description: "一个直观的任务管理工具，支持团队协作、实时更新和进度跟踪。",
-    technologies: ["Vue.js", "Express", "Socket.io", "PostgreSQL"],
+    title: "Network Security Tool",
+    description: "A comprehensive network security monitoring tool built with Kali Linux tools and Node.js, providing real-time threat detection and analysis.",
+    technologies: ["Kali Linux", "Node.js", "Python", "Wireshark"],
     liveUrl: "#",
     githubUrl: "#"
   },
   {
     id: "3",
-    title: "数据分析仪表板",
-    description: "一个强大的数据分析平台，提供实时数据可视化和交互式图表。",
-    technologies: ["D3.js", "Python", "Flask", "Redis"],
+    title: "Cybersecurity Dashboard",
+    description: "A powerful cybersecurity dashboard providing real-time security monitoring, vulnerability assessment, and incident response capabilities.",
+    technologies: ["React.js", "Node.js", "Kali Linux", "Docker"],
     liveUrl: "#",
     githubUrl: "#"
   }
@@ -42,35 +42,36 @@ export const projects: Project[] = [
 
 export const skills: Skill[] = [
   // Frontend
-  { name: "React", level: 90, category: "frontend" },
-  { name: "Vue.js", level: 85, category: "frontend" },
-  { name: "TypeScript", level: 80, category: "frontend" },
-  { name: "CSS3/SASS", level: 95, category: "frontend" },
-  { name: "Next.js", level: 85, category: "frontend" },
-  { name: "Tailwind CSS", level: 90, category: "frontend" },
+  { name: "React.js", level: 95, category: "frontend" },
+  { name: "Next.js", level: 90, category: "frontend" },
+  { name: "TypeScript", level: 85, category: "frontend" },
+  { name: "CSS3/SASS", level: 90, category: "frontend" },
+  { name: "Tailwind CSS", level: 95, category: "frontend" },
+  { name: "JavaScript", level: 95, category: "frontend" },
   
   // Backend
-  { name: "Node.js", level: 85, category: "backend" },
-  { name: "Python", level: 75, category: "backend" },
-  { name: "Go", level: 70, category: "backend" },
+  { name: "Node.js", level: 95, category: "backend" },
+  { name: "Express.js", level: 90, category: "backend" },
+  { name: "Python", level: 80, category: "backend" },
+  { name: "MongoDB", level: 85, category: "backend" },
   { name: "PostgreSQL", level: 80, category: "backend" },
-  { name: "MongoDB", level: 75, category: "backend" },
-  { name: "Redis", level: 70, category: "backend" },
+  { name: "REST APIs", level: 90, category: "backend" },
   
-  // Tools
-  { name: "Git", level: 90, category: "tools" },
+  // Cybersecurity & Network
+  { name: "Kali Linux", level: 95, category: "tools" },
+  { name: "Network Security", level: 90, category: "tools" },
+  { name: "Penetration Testing", level: 85, category: "tools" },
+  { name: "Wireshark", level: 80, category: "tools" },
   { name: "Docker", level: 75, category: "tools" },
-  { name: "AWS", level: 70, category: "tools" },
-  { name: "Figma", level: 85, category: "tools" },
-  { name: "Vercel", level: 80, category: "tools" }
+  { name: "Git", level: 90, category: "tools" }
 ];
 
 export const contactInfo: ContactInfo = {
-  email: "your.email@example.com",
-  phone: "+86 138 0000 0000",
-  location: "中国，北京",
+  email: "gustav.james@example.com",
+  phone: "+1 825-963-1088",
+  location: "Edmonton, Canada",
   social: {
-    github: "#",
+    github: "https://github.com/Gustavjames",
     linkedin: "#",
     twitter: "#",
     instagram: "#"

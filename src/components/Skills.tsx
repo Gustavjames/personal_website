@@ -13,7 +13,7 @@ const Skills = () => {
     <section id="skills" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">技能专长</h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Skills & Expertise</h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
         </div>
 
@@ -25,7 +25,7 @@ const Skills = () => {
                   {category === 'frontend' ? '🎨' : category === 'backend' ? '⚙️' : '🛠️'}
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900">
-                  {category === 'frontend' ? '前端开发' : category === 'backend' ? '后端开发' : '工具 & 其他'}
+                  {category === 'frontend' ? 'Frontend Development' : category === 'backend' ? 'Backend Development' : 'Cybersecurity & Tools'}
                 </h3>
               </div>
 

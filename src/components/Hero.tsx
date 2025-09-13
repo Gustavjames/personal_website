@@ -9,7 +9,7 @@ const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              你好，我是{' '}
+              Hello, I'm{' '}
               <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
                 {personalInfo.name}
               </span>
@@ -29,14 +29,14 @@ const Hero = () => {
                 onClick={(e) => { e.preventDefault(); document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' }); }}
                 className="inline-flex items-center justify-center px-8 py-4 bg-yellow-400 text-gray-900 font-semibold rounded-lg hover:bg-yellow-500 transition-all duration-300"
               >
-                查看作品
+                View Projects
               </a>
               <a
                 href="#contact"
                 onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
                 className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300"
               >
-                联系我
+                Contact Me
               </a>
             </div>
           </div>
@@ -53,15 +53,15 @@ const Hero = () => {
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
                     <div className="text-2xl font-bold text-yellow-400">{personalInfo.stats.projects}+</div>
-                    <div className="text-sm text-blue-100">项目</div>
+                    <div className="text-sm text-blue-100">Projects</div>
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-yellow-400">{personalInfo.stats.experience}</div>
-                    <div className="text-sm text-blue-100">经验</div>
+                    <div className="text-sm text-blue-100">Experience</div>
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-yellow-400">{personalInfo.stats.satisfaction}%</div>
-                    <div className="text-sm text-blue-100">满意度</div>
+                    <div className="text-sm text-blue-100">Satisfaction</div>
                   </div>
                 </div>
               </div>
