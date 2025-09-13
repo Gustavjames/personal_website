@@ -59,12 +59,12 @@ const Navbar = ({ user, onLogin, onLogout }: NavbarProps) => {
               <div className="flex items-center space-x-4">
                 {user ? (
                   <div className="flex items-center space-x-3">
-                    <div className="text-sm text-cyan-400 terminal-text">
+                    <div className="text-sm text-gray-400 terminal-text">
                       &gt; {user.name}
                     </div>
                     <button
                       onClick={onLogout}
-                      className="flex items-center space-x-1 px-3 py-2 bg-red-600/20 text-red-400 rounded-lg hover:bg-red-600/30 transition-colors terminal-text border border-red-600"
+                      className="flex items-center space-x-1 px-3 py-2 bg-gray-800/50 text-gray-300 rounded-lg hover:bg-gray-700/50 transition-colors terminal-text border border-gray-600"
                     >
                       <LogOut size={16} />
                       <span>LOGOUT</span>
@@ -73,7 +73,7 @@ const Navbar = ({ user, onLogin, onLogout }: NavbarProps) => {
                 ) : (
                   <button
                     onClick={onLogin}
-                    className="flex items-center space-x-2 px-4 py-2 bg-green-600/20 text-green-400 rounded-lg hover:bg-green-600/30 transition-colors terminal-text border border-green-600"
+                    className="flex items-center space-x-2 px-4 py-2 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-colors terminal-text border border-white/30"
                   >
                     <User size={16} />
                     <span>LOGIN</span>
@@ -111,12 +111,12 @@ const Navbar = ({ user, onLogin, onLogout }: NavbarProps) => {
               <div className="pt-2 border-t border-white/20">
                 {user ? (
                   <div className="space-y-2">
-                    <div className="text-sm text-cyan-400 terminal-text px-3 py-2">
+                    <div className="text-sm text-gray-400 terminal-text px-3 py-2">
                       &gt; {user.name}
                     </div>
                     <button
                       onClick={onLogout}
-                      className="flex items-center space-x-2 w-full px-3 py-2 bg-red-600/20 text-red-400 rounded-lg hover:bg-red-600/30 transition-colors terminal-text border border-red-600"
+                      className="flex items-center space-x-2 w-full px-3 py-2 bg-gray-800/50 text-gray-300 rounded-lg hover:bg-gray-700/50 transition-colors terminal-text border border-gray-600"
                     >
                       <LogOut size={16} />
                       <span>LOGOUT</span>
@@ -125,7 +125,7 @@ const Navbar = ({ user, onLogin, onLogout }: NavbarProps) => {
                 ) : (
                   <button
                     onClick={onLogin}
-                    className="flex items-center space-x-2 w-full px-3 py-2 bg-green-600/20 text-green-400 rounded-lg hover:bg-green-600/30 transition-colors terminal-text border border-green-600"
+                    className="flex items-center space-x-2 w-full px-3 py-2 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-colors terminal-text border border-white/30"
                   >
                     <User size={16} />
                     <span>LOGIN</span>

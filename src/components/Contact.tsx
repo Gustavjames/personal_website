@@ -1,8 +1,59 @@
 'use client';
 
+import { useState } from 'react';
 import { contactInfo } from '@/data/personalData';
+import { Send, CheckCircle, AlertCircle } from 'lucide-react';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/api/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Submit error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <section id="contact" className="py-20 bg-black relative overflow-hidden">
       {/* Matrix background effects */}
@@ -70,7 +121,22 @@ const Contact = () => {
               &gt; SEND_MESSAGE
             </h3>
             
-            <form className="space-y-6">
+            {/* Status Messages */}
+            {submitStatus === 'success' && (
+              <div className="mb-6 p-4 bg-green-900/20 border border-green-400 rounded-lg flex items-center space-x-2">
+                <CheckCircle className="text-green-400" size={20} />
+                <span className="text-green-400 terminal-text">MESSAGE_SENT_SUCCESSFULLY</span>
+              </div>
+            )}
+            
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-900/20 border border-red-400 rounded-lg flex items-center space-x-2">
+                <AlertCircle className="text-red-400" size={20} />
+                <span className="text-red-400 terminal-text">ERROR_SENDING_MESSAGE</span>
+              </div>
+            )}
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-green-400 mb-2 terminal-text">
@@ -80,8 +146,11 @@ const Contact = () => {
                     type="text"
                     id="name"
                     name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
                     className="w-full px-4 py-3 bg-black border border-green-400 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors duration-300 text-white terminal-text"
                     placeholder="Your name"
+                    required
                   />
                 </div>
                 <div>
@@ -92,8 +161,11 @@ const Contact = () => {
                     type="email"
                     id="email"
                     name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     className="w-full px-4 py-3 bg-black border border-green-400 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors duration-300 text-white terminal-text"
                     placeholder="your.email@example.com"
+                    required
                   />
                 </div>
               </div>
@@ -106,8 +178,11 @@ const Contact = () => {
                   type="text"
                   id="subject"
                   name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 bg-black border border-green-400 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors duration-300 text-white terminal-text"
                   placeholder="Project collaboration / Technical consultation / Other"
+                  required
                 />
               </div>
               
@@ -119,16 +194,30 @@ const Contact = () => {
                   id="message"
                   name="message"
                   rows={5}
+                  value={formData.message}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 bg-black border border-green-400 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors duration-300 resize-none text-white terminal-text"
                   placeholder="Please describe your requirements or ideas in detail..."
+                  required
                 />
               </div>
               
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-green-600 to-cyan-600 text-black font-semibold py-3 px-6 rounded-lg hover:from-green-700 hover:to-cyan-700 transition-all duration-300 terminal-text hacker-glow"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-green-600 to-cyan-600 text-black font-semibold py-3 px-6 rounded-lg hover:from-green-700 hover:to-cyan-700 transition-all duration-300 terminal-text hacker-glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
-                &gt; SEND_MESSAGE
+                {isSubmitting ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+                    <span>SENDING...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} />
+                    <span>&gt; SEND_MESSAGE</span>
+                  </>
+                )}
               </button>
             </form>
           </div>
