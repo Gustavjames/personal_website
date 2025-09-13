@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
   return new Response('WebSocket server started', { status: 200 });
 }
 
-async function sendSystemData(ws: any) {
+async function sendSystemData(ws: WebSocket) {
   try {
     const cpu = await si.cpu();
     const cpuCurrentSpeed = await si.cpuCurrentSpeed();

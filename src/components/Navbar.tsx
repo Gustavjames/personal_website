@@ -3,9 +3,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
-interface NavbarProps {
-  // No props needed for simple navigation
-}
+// No props needed for simple navigation
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

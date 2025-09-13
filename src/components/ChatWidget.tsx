@@ -53,7 +53,7 @@ const ChatWidget = () => {
 
     // Simulate terminal processing
     setTimeout(() => {
-      let response = hackerResponses[cleanMessage] || 
+      const response = hackerResponses[cleanMessage] || 
         `> ERROR: Command '${cleanMessage}' not found\n> Type 'help' for available commands`;
       
       if (cleanMessage === 'clear') {

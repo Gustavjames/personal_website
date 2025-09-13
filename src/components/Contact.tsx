@@ -76,11 +76,11 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div>
             <h3 className="text-2xl font-bold text-white mb-6 terminal-text">
-              &gt; LET'S_START_COLLABORATING
+              &gt; LET&apos;S_START_COLLABORATING
             </h3>
             <p className="text-gray-300 mb-8 leading-relaxed">
               I firmly believe that the best projects come from good communication and collaboration.
-              Whatever ideas or needs you have, I'm willing to listen and provide professional technical support.
+              Whatever ideas or needs you have, I&apos;m willing to listen and provide professional technical support.
             </p>
 
             <div className="space-y-6 mb-8">

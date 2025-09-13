@@ -4,12 +4,12 @@ import Message from '@/models/Message';
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
 
-    const { id } = params;
+    const { id } = await params;
     const { status, isRead } = await request.json();
 
     if (!id) {
@@ -19,7 +19,7 @@ export async function PATCH(
       );
     }
 
-    const updateData: any = {};
+    const updateData: Record<string, string | boolean> = {};
     if (status) updateData.status = status;
     if (isRead !== undefined) updateData.isRead = isRead;
 
@@ -53,12 +53,12 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
 
-    const { id } = params;
+    const { id } = await params;
 
     if (!id) {
       return NextResponse.json(

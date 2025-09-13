@@ -91,7 +91,7 @@ const MessagesPage = () => {
       if (response.ok) {
         fetchMessages();
         if (selectedMessage?._id === messageId) {
-          setSelectedMessage({ ...selectedMessage, status: status as any });
+          setSelectedMessage({ ...selectedMessage, status: status as string });
         }
       }
     } catch (error) {
@@ -146,7 +146,7 @@ const MessagesPage = () => {
         <div className="mb-6">
           <select
             value={filter}
-            onChange={(e) => setFilter(e.target.value as any)}
+            onChange={(e) => setFilter(e.target.value)}
             className="px-4 py-2 bg-gray-800 border border-green-400/30 rounded-lg text-white"
           >
             <option value="all">All Messages</option>
