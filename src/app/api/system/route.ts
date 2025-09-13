@@ -13,7 +13,8 @@ export async function GET(request: NextRequest) {
     const mem = await si.mem();
     
     // 获取系统信息
-    const system = await si.system();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const system = await si.system() as Record<string, any>;
     
     // 计算CPU使用率
     const cpuUsage = cpuLoad.currentLoad;
@@ -42,11 +43,11 @@ export async function GET(request: NextRequest) {
         usage: Math.round((mem.used / mem.total) * 100 * 100) / 100 // 百分比
       },
       system: {
-        platform: system.platform,
-        distro: system.distro,
-        release: system.release,
-        arch: system.arch,
-        hostname: system.hostname
+        platform: system.platform || 'unknown',
+        distro: system.distro || 'Unknown',
+        release: system.release || 'Unknown',
+        arch: system.arch || 'x64',
+        hostname: system.hostname || 'localhost'
       },
       timestamp: new Date().toISOString()
     };
