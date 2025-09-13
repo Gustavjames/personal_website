@@ -4,7 +4,33 @@ import { NextRequest, NextResponse } from 'next/server';
 const isServerEnvironment = typeof window === 'undefined' && process.env.NODE_ENV === 'production';
 
 // Helper function to create system data
-const createSystemData = (overrides: Partial<any> = {}) => ({
+const createSystemData = (overrides: {
+  cpu?: Partial<{
+    usage: number;
+    cores: number[];
+    temperature: number;
+    frequency: number;
+    coresCount: number;
+    manufacturer: string;
+    brand: string;
+  }>;
+  memory?: Partial<{
+    total: number;
+    used: number;
+    free: number;
+    usage: number;
+  }>;
+  system?: Partial<{
+    platform: string;
+    distro: string;
+    release: string;
+    arch: string;
+    hostname: string;
+  }>;
+  contact?: Partial<{
+    email: string;
+  }>;
+} = {}) => ({
   cpu: {
     usage: Math.random() * 100,
     cores: Array(8).fill(0).map(() => Math.random() * 100),
@@ -31,10 +57,10 @@ const createSystemData = (overrides: Partial<any> = {}) => ({
     ...overrides.system
   },
   contact: {
-    email: "gustavjames382@gmail.com"
+    email: "gustavjames382@gmail.com",
+    ...overrides.contact
   },
-  timestamp: new Date().toISOString(),
-  ...overrides
+  timestamp: new Date().toISOString()
 });
 
 export async function GET() {

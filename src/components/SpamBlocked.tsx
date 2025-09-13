@@ -56,7 +56,7 @@ const SpamBlocked = ({ onReset }: SpamBlockedProps) => {
         
         {/* Subtitle */}
         <div className="text-orange-300 text-lg mb-6">
-          You're refreshing too frequently!
+          You&apos;re refreshing too frequently!
         </div>
         
         {/* Details */}
