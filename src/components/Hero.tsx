@@ -2,7 +2,12 @@
 
 import { personalInfo } from '@/data/personalData';
 
-const Hero = () => {
+interface HeroProps {
+  user: { email: string; name: string } | null;
+  onLogin: () => void;
+}
+
+const Hero = ({ user, onLogin }: HeroProps) => {
   return (
     <section id="home" className="min-h-screen flex items-center relative overflow-hidden">
       {/* Matrix-style background effects */}
@@ -43,13 +48,18 @@ const Hero = () => {
               >
                 &gt; VIEW_PROJECTS
               </a>
-              <a
-                href="#contact"
-                onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-green-400 text-green-400 font-bold rounded-lg hover:bg-green-400 hover:text-black transition-all duration-300 terminal-text"
-              >
-                &gt; CONTACT_ME
-              </a>
+              {user ? (
+                <div className="inline-flex items-center justify-center px-8 py-4 border-2 border-cyan-400 text-cyan-400 font-bold rounded-lg terminal-text">
+                  &gt; WELCOME_BACK_{user.name.toUpperCase()}
+                </div>
+              ) : (
+                <button
+                  onClick={onLogin}
+                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-green-400 text-green-400 font-bold rounded-lg hover:bg-green-400 hover:text-black transition-all duration-300 terminal-text"
+                >
+                  &gt; LOGIN_TO_CONTINUE
+                </button>
+              )}
             </div>
           </div>
 

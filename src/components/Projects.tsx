@@ -1,6 +1,6 @@
 'use client';
 
-import { projects } from '@/data/personalData';
+import Interactive3DCardGrid from './Interactive3DCard';
 
 const Projects = () => {
   return (
@@ -22,46 +22,7 @@ const Projects = () => {
           <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-cyan-400 mx-auto rounded-full hacker-glow"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <div key={project.id} className="glass rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 hacker-glow">
-              <div className="h-48 bg-gradient-to-br from-green-600 to-cyan-600 relative overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center text-black">
-                  <div className="text-6xl terminal-text">💻</div>
-                </div>
-                <div className="absolute top-4 right-4">
-                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                </div>
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors duration-300 terminal-text">
-                  {project.title}
-                </h3>
-                
-                <p className="text-gray-300 mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-green-900/50 text-green-400 text-sm font-medium rounded-full hover:bg-green-800/50 transition-colors duration-300 terminal-text border border-green-600"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-4 text-xs text-cyan-400 terminal-text">
-                  &gt; STATUS: {project.id === '1' ? 'IN_DEVELOPMENT' : 'ACTIVE'}<br />
-                  &gt; SECURITY_LEVEL: MAXIMUM
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Interactive3DCardGrid />
       </div>
     </section>
   );
