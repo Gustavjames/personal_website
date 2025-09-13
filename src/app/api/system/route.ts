@@ -1,29 +1,73 @@
 import { NextRequest, NextResponse } from 'next/server';
-import * as si from 'systeminformation';
+
+// Check if running in server environment
+const isServerEnvironment = typeof window === 'undefined' && process.env.NODE_ENV === 'production';
+
+// Helper function to create system data
+const createSystemData = (overrides: Partial<any> = {}) => ({
+  cpu: {
+    usage: Math.random() * 100,
+    cores: Array(8).fill(0).map(() => Math.random() * 100),
+    temperature: 40 + Math.random() * 30,
+    frequency: 2000 + Math.random() * 2000,
+    coresCount: 8,
+    manufacturer: "Server",
+    brand: "Cloud Instance",
+    ...overrides.cpu
+  },
+  memory: {
+    total: 16,
+    used: Math.random() * 16,
+    free: 16 - Math.random() * 16,
+    usage: Math.random() * 100,
+    ...overrides.memory
+  },
+  system: {
+    platform: "server",
+    distro: "Cloud",
+    release: "Production",
+    arch: "x64",
+    hostname: "cloud-server",
+    ...overrides.system
+  },
+  contact: {
+    email: "gustavjames382@gmail.com"
+  },
+  timestamp: new Date().toISOString(),
+  ...overrides
+});
 
 export async function GET() {
   try {
-    // 获取CPU信息
+    // In server environment, return mock data directly
+    if (isServerEnvironment) {
+      return NextResponse.json(createSystemData());
+    }
+
+    // In development environment, try to use systeminformation
+    const si = await import('systeminformation');
+    
+    // Get CPU information
     const cpu = await si.cpu();
     const cpuCurrentSpeed = await si.cpuCurrentSpeed();
     const cpuTemperature = await si.cpuTemperature();
     const cpuLoad = await si.currentLoad();
     
-    // 获取内存信息
+    // Get memory information
     const mem = await si.mem();
     
-    // 获取系统信息
+    // Get system information
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const system = await si.system() as Record<string, any>;
     
-    // 计算CPU使用率
+    // Calculate CPU usage
     const cpuUsage = cpuLoad.currentLoad;
     const cores = cpuLoad.cpus.map(core => core.load);
     
-    // 获取CPU温度（如果可用）
-    const temperature = cpuTemperature.main || 45; // 默认45度
+    // Get CPU temperature (if available)
+    const temperature = cpuTemperature.main || 45; // Default 45 degrees
     
-    // 获取CPU频率
+    // Get CPU frequency
     const frequency = cpuCurrentSpeed.avg || cpu.speed || 2400;
     
     const systemData = {
@@ -40,7 +84,7 @@ export async function GET() {
         total: Math.round(mem.total / 1024 / 1024 / 1024 * 100) / 100, // GB
         used: Math.round(mem.used / 1024 / 1024 / 1024 * 100) / 100, // GB
         free: Math.round(mem.free / 1024 / 1024 / 1024 * 100) / 100, // GB
-        usage: Math.round((mem.used / mem.total) * 100 * 100) / 100 // 百分比
+        usage: Math.round((mem.used / mem.total) * 100 * 100) / 100 // Percentage
       },
       system: {
         platform: system.platform || 'unknown',
@@ -49,6 +93,9 @@ export async function GET() {
         arch: system.arch || 'x64',
         hostname: system.hostname || 'localhost'
       },
+      contact: {
+        email: "gustavjames382@gmail.com"
+      },
       timestamp: new Date().toISOString()
     };
 
@@ -56,33 +103,10 @@ export async function GET() {
   } catch (error) {
     console.error('Error fetching system data:', error);
     
-    // 如果获取真实数据失败，返回模拟数据
-    const fallbackData = {
-      cpu: {
-        usage: Math.random() * 100,
-        cores: Array(8).fill(0).map(() => Math.random() * 100),
-        temperature: 40 + Math.random() * 30,
-        frequency: 2000 + Math.random() * 2000,
-        coresCount: 8,
-        manufacturer: "Unknown",
-        brand: "Unknown"
-      },
-      memory: {
-        total: 16,
-        used: Math.random() * 16,
-        free: 16 - Math.random() * 16,
-        usage: Math.random() * 100
-      },
-      system: {
-        platform: "unknown",
-        distro: "Unknown",
-        release: "Unknown",
-        arch: "x64",
-        hostname: "localhost"
-      },
-      timestamp: new Date().toISOString()
-    };
-
-    return NextResponse.json(fallbackData);
+    // If getting real data fails, return mock data
+    return NextResponse.json(createSystemData({
+      cpu: { manufacturer: "Unknown", brand: "Unknown" },
+      system: { platform: "unknown", distro: "Unknown", release: "Unknown", hostname: "localhost" }
+    }));
   }
 }

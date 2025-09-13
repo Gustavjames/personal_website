@@ -54,7 +54,7 @@ const CPUMonitor: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isRealData, setIsRealData] = useState(false);
 
-  // 获取真实系统数据
+  // Get real system data
   const fetchSystemData = async () => {
     try {
       const response = await fetch('/api/system');
@@ -88,18 +88,18 @@ const CPUMonitor: React.FC = () => {
     }
   };
 
-  // 获取真实CPU数据
+  // Get real CPU data
   useEffect(() => {
-    // 立即获取一次数据
+    // Get data immediately once
     fetchSystemData();
     
-    // 每2秒更新一次
+    // Update every 2 seconds
     const interval = setInterval(fetchSystemData, 2000);
 
     return () => clearInterval(interval);
   }, []);
 
-  // 显示/隐藏动画
+  // Show/hide animation
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 1000);
     return () => clearTimeout(timer);
@@ -122,7 +122,7 @@ const CPUMonitor: React.FC = () => {
   return (
     <div className={`fixed top-4 right-4 z-50 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'}`}>
       <div className="bg-black/90 backdrop-blur-sm border border-green-500/30 rounded-lg p-3 font-mono text-xs shadow-2xl w-64">
-        {/* 标题 */}
+        {/* Title */}
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center space-x-1">
             <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${isRealData ? 'bg-green-500' : 'bg-red-500'}`}></div>
@@ -134,7 +134,7 @@ const CPUMonitor: React.FC = () => {
           </div>
         </div>
 
-        {/* 总体CPU使用率 */}
+        {/* Overall CPU usage */}
         <div className="mb-3">
           <div className="flex justify-between items-center mb-1">
             <span className="text-gray-300 text-xs">CPU</span>
@@ -152,7 +152,7 @@ const CPUMonitor: React.FC = () => {
           </div>
         </div>
 
-        {/* 内存使用率 */}
+        {/* Memory usage */}
         <div className="mb-3">
           <div className="flex justify-between items-center mb-1">
             <span className="text-gray-300 text-xs">RAM</span>
@@ -174,7 +174,7 @@ const CPUMonitor: React.FC = () => {
           </div>
         </div>
 
-        {/* 核心使用率 */}
+        {/* Core usage */}
         <div className="mb-3">
           <div className="text-gray-300 mb-1 text-xs">CORES</div>
           <div className="grid grid-cols-4 gap-1">
@@ -197,7 +197,7 @@ const CPUMonitor: React.FC = () => {
           </div>
         </div>
 
-        {/* 系统信息 */}
+        {/* System information */}
         <div className="space-y-1 text-xs">
           <div className="flex justify-between">
             <span className="text-gray-400">TEMP:</span>
@@ -213,7 +213,7 @@ const CPUMonitor: React.FC = () => {
           </div>
         </div>
 
-        {/* 底部装饰线 */}
+        {/* Bottom decorative line */}
         <div className="mt-2 pt-1 border-t border-green-500/20">
           <div className="flex space-x-1">
             {[...Array(10)].map((_, i) => (

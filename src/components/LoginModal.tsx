@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { X, User, Mail, Shield, Eye, EyeOff } from 'lucide-react';
+import { X, User, Mail, Shield } from 'lucide-react';
 
 interface LoginModalProps {
   isOpen: boolean;

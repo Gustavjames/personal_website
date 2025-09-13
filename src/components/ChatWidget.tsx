@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Terminal, X, Send, Shield, Zap, Lock } from 'lucide-react';
+import { Terminal, X, Send } from 'lucide-react';
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);

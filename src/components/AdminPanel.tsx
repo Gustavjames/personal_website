@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Database, Users, Monitor, Smartphone, Globe, Trash2, RefreshCw } from 'lucide-react';
+import { Database, Users, Monitor, Smartphone, Trash2, RefreshCw } from 'lucide-react';
 
 interface User {
   _id: string;

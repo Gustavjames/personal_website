@@ -5,52 +5,12 @@ import { useState, useRef, useEffect } from 'react';
 import BashTerminal from './BashTerminal';
 
 const Hero = () => {
-  const [showProjects, setShowProjects] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-  const [cardPosition, setCardPosition] = useState({ x: 0, y: 0 });
   const [displayedName, setDisplayedName] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [displayedDescription, setDisplayedDescription] = useState('');
   const [isTypingDescription, setIsTypingDescription] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    
-    const rect = cardRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    
-    const x = (e.clientX - centerX) / (rect.width / 2);
-    const y = (e.clientY - centerY) / (rect.height / 2);
-    
-    setMousePosition({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setMousePosition({ x: 0, y: 0 });
-  };
-
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    
-    setIsDragging(true);
-    const rect = cardRef.current.getBoundingClientRect();
-    setDragOffset({
-      x: e.clientX - rect.left - rect.width / 2,
-      y: e.clientY - rect.top - rect.height / 2
-    });
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  // 逐字母显示姓名
+  // Display name letter by letter
   useEffect(() => {
     const fullName = 'Gustav James';
     let currentIndex = 0;
@@ -64,7 +24,7 @@ const Hero = () => {
         setIsTyping(false);
         clearInterval(typeInterval);
         
-        // 姓名显示完成后，开始显示描述
+        // After name display is complete, start displaying description
         setTimeout(() => {
           const description = "I'm a Java developer specializing in cybersecurity, cryptography, and AI model training. I build secure applications, develop cryptographic solutions, and train machine learning models using Java and related technologies.";
           let descIndex = 0;
@@ -78,44 +38,13 @@ const Hero = () => {
               setIsTypingDescription(false);
               clearInterval(descInterval);
             }
-          }, 30); // 每30ms显示一个字母，更快一些
-        }, 1000); // 延迟1秒开始显示描述
+          }, 30); // Display one letter every 30ms, faster
+        }, 1000); // Delay 1 second before starting to display description
       }
-    }, 150); // 每150ms显示一个字母
+    }, 150); // Display one letter every 150ms
     
     return () => clearInterval(typeInterval);
   }, []);
-
-
-  const handleDrag = (e: MouseEvent) => {
-    if (!isDragging || !containerRef.current) return;
-    
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const newX = e.clientX - containerRect.left - containerRect.width / 2 - dragOffset.x;
-    const newY = e.clientY - containerRect.top - containerRect.height / 2 - dragOffset.y;
-    
-    // 限制拖拽范围
-    const maxX = containerRect.width / 2 - 200;
-    const maxY = containerRect.height / 2 - 200;
-    
-    setCardPosition({
-      x: Math.max(-maxX, Math.min(maxX, newX)),
-      y: Math.max(-maxY, Math.min(maxY, newY))
-    });
-  };
-
-  useEffect(() => {
-    if (isDragging) {
-      document.addEventListener('mousemove', handleDrag);
-      document.addEventListener('mouseup', handleMouseUp);
-      
-      return () => {
-        document.removeEventListener('mousemove', handleDrag);
-        document.removeEventListener('mouseup', handleMouseUp);
-      };
-    }
-  }, [isDragging, dragOffset]);
-
 
   return (
     <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-black py-20">

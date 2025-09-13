@@ -115,7 +115,7 @@ const BashTerminal = () => {
   return (
     <div className="w-full max-w-6xl mx-auto mb-8">
       <div className="bg-gray-900 border-2 border-gray-700 rounded-t-lg overflow-hidden font-mono shadow-2xl relative">
-        {/* Kali Linux 装饰边框 */}
+        {/* Kali Linux decorative border */}
         <div className="absolute inset-0 border-2 border-gray-600 rounded-t-lg pointer-events-none"></div>
         <div className="absolute top-1 left-1 right-1 h-1 bg-gradient-to-r from-transparent via-gray-600 to-transparent opacity-50"></div>
         {/* Kali Terminal Header */}

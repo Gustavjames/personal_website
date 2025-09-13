@@ -1,0 +1,19 @@
+warning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/api/system/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/api/system/ws/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/page.tsx', LF will be replaced by CRLF the next time Git touches it
+package.json
+personal-website/next.config.ts
+src/app/api/system/route.ts
+src/app/api/system/ws/route.ts
+src/app/page.tsx
+src/components/AdminPanel.tsx
+src/components/BashTerminal.tsx
+src/components/CPUMonitor.tsx
+src/components/ChatWidget.tsx
+src/components/Hero.tsx
+src/components/KaliWaveChart.tsx
+src/components/LoginModal.tsx
+src/components/SpamBlocked.tsx
+src/data/personalData.ts
+tatus

@@ -15,20 +15,19 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSpamBlocked, setIsSpamBlocked] = useState(false);
   const refreshTimesRef = useRef<number[]>([]);
-  const lastRefreshRef = useRef<number>(0);
 
-  // 检查是否在10秒内刷新超过5次
+  // Check if refreshed more than 5 times in 10 seconds
   const checkSpamRefresh = () => {
     const now = Date.now();
     const tenSecondsAgo = now - 10000;
     
-    // 清理10秒前的刷新记录
+    // Clean refresh records from more than 10 seconds ago
     refreshTimesRef.current = refreshTimesRef.current.filter(time => time > tenSecondsAgo);
     
-    // 添加当前刷新时间
+    // Add current refresh time
     refreshTimesRef.current.push(now);
     
-    // 检查是否超过5次
+    // Check if more than 5 times
     if (refreshTimesRef.current.length >= 5) {
       setIsSpamBlocked(true);
       return true;
@@ -37,41 +36,41 @@ export default function Home() {
     return false;
   };
 
-  // 重置防刷屏状态
+  // Reset spam block status
   const resetSpamBlock = () => {
     setIsSpamBlocked(false);
     refreshTimesRef.current = [];
   };
 
   useEffect(() => {
-    // 设置加载超时
+    // Set loading timeout
     const loadingTimeout = setTimeout(() => {
       setIsLoading(false);
     }, 1500);
 
-    // 页面刷新保护
+    // Page refresh protection
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (isSpamBlocked) {
         e.preventDefault();
-        e.returnValue = '检测到异常刷新行为，请等待冷却时间结束。';
-        return '检测到异常刷新行为，请等待冷却时间结束。';
+        e.returnValue = 'Abnormal refresh behavior detected, please wait for cooldown to end.';
+        return 'Abnormal refresh behavior detected, please wait for cooldown to end.';
       }
       
       if (checkSpamRefresh()) {
         e.preventDefault();
-        e.returnValue = '刷新太频繁了！请等待冷却时间结束。';
-        return '刷新太频繁了！请等待冷却时间结束。';
+        e.returnValue = 'Refreshing too frequently! Please wait for cooldown to end.';
+        return 'Refreshing too frequently! Please wait for cooldown to end.';
       }
     };
 
-    // 键盘刷新保护
+    // Keyboard refresh protection
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isSpamBlocked) {
         e.preventDefault();
         return false;
       }
       
-      // 阻止 F5 和 Ctrl+R
+      // Block F5 and Ctrl+R
       if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
         if (checkSpamRefresh()) {
           e.preventDefault();
@@ -80,7 +79,7 @@ export default function Home() {
       }
     };
 
-    // 鼠标右键刷新保护
+    // Mouse right-click refresh protection
     const handleContextMenu = (e: MouseEvent) => {
       if (isSpamBlocked) {
         e.preventDefault();

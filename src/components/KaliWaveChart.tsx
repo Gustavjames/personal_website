@@ -41,20 +41,20 @@ const KaliWaveChart: React.FC<KaliWaveChartProps> = ({
     const width = canvas.width;
     const height = canvas.height;
     
-    // 清空画布
+    // Clear canvas
     ctx.clearRect(0, 0, width, height);
     
-    // 设置背景
+    // Set background
     ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
     ctx.fillRect(0, 0, width, height);
     
-    // 计算波形参数
+    // Calculate wave parameters
     const normalizedValue = value / 100;
     const waveHeight = height * 0.6;
     const centerY = height / 2;
     const time = timeRef.current * 0.01;
     
-    // 绘制多层波形
+    // Draw multi-layer waves
     const layers = [
       { amplitude: waveHeight * normalizedValue * 0.8, frequency: 0.02, phase: 0, alpha: 0.8 },
       { amplitude: waveHeight * normalizedValue * 0.6, frequency: 0.03, phase: Math.PI / 3, alpha: 0.6 },
@@ -67,7 +67,7 @@ const KaliWaveChart: React.FC<KaliWaveChartProps> = ({
       ctx.lineWidth = 2;
       ctx.globalAlpha = layer.alpha;
       
-      // 绘制主波形
+      // Draw main wave
       for (let x = 0; x < width; x += 2) {
         const y = centerY + 
           Math.sin(x * layer.frequency + time + layer.phase) * layer.amplitude +
@@ -82,7 +82,7 @@ const KaliWaveChart: React.FC<KaliWaveChartProps> = ({
       }
       ctx.stroke();
       
-      // 绘制3D效果 - 阴影
+      // Draw 3D effect - shadow
       ctx.beginPath();
       ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
       ctx.lineWidth = 3;
@@ -103,7 +103,7 @@ const KaliWaveChart: React.FC<KaliWaveChartProps> = ({
       ctx.stroke();
     });
 
-    // 绘制数据点
+    // Draw data points
     const pointSpacing = width / 20;
     for (let i = 0; i < 20; i++) {
       const x = i * pointSpacing;
@@ -112,14 +112,14 @@ const KaliWaveChart: React.FC<KaliWaveChartProps> = ({
         Math.sin(x * 0.03 + time + Math.PI / 3) * waveHeight * normalizedValue * 0.6 +
         Math.sin(x * 0.05 + time + Math.PI / 2) * waveHeight * normalizedValue * 0.4;
       
-      // 绘制发光点
+      // Draw glowing points
       ctx.beginPath();
       ctx.arc(x, y, 2, 0, Math.PI * 2);
       ctx.fillStyle = getColorClass(color);
       ctx.globalAlpha = 0.8;
       ctx.fill();
       
-      // 绘制外圈发光效果
+      // Draw outer ring glow effect
       ctx.beginPath();
       ctx.arc(x, y, 4, 0, Math.PI * 2);
       ctx.strokeStyle = getColorClass(color);
@@ -127,7 +127,7 @@ const KaliWaveChart: React.FC<KaliWaveChartProps> = ({
       ctx.lineWidth = 1;
       ctx.stroke();
       
-      // 添加随机闪烁效果
+      // Add random flicker effect
       if (Math.random() > 0.95) {
         ctx.beginPath();
         ctx.arc(x, y, 6, 0, Math.PI * 2);
@@ -138,18 +138,18 @@ const KaliWaveChart: React.FC<KaliWaveChartProps> = ({
       }
     }
 
-    // 绘制边框
+    // Draw border
     ctx.strokeStyle = getColorClass(color);
     ctx.lineWidth = 1;
     ctx.globalAlpha = 0.6;
     ctx.strokeRect(0, 0, width, height);
 
-    // 绘制网格线
+    // Draw grid lines
     ctx.strokeStyle = 'rgba(0, 255, 0, 0.1)';
     ctx.lineWidth = 0.5;
     ctx.globalAlpha = 0.3;
     
-    // 水平网格线
+    // Horizontal grid lines
     for (let i = 0; i <= 4; i++) {
       const y = (height / 4) * i;
       ctx.beginPath();
@@ -158,7 +158,7 @@ const KaliWaveChart: React.FC<KaliWaveChartProps> = ({
       ctx.stroke();
     }
     
-    // 垂直网格线
+    // Vertical grid lines
     for (let i = 0; i <= 10; i++) {
       const x = (width / 10) * i;
       ctx.beginPath();
@@ -167,7 +167,7 @@ const KaliWaveChart: React.FC<KaliWaveChartProps> = ({
       ctx.stroke();
     }
 
-    // 重置透明度
+    // Reset transparency
     ctx.globalAlpha = 1;
   };
 
@@ -201,7 +201,7 @@ const KaliWaveChart: React.FC<KaliWaveChartProps> = ({
         className="w-full"
         style={{ imageRendering: 'pixelated' }}
       />
-      {/* 添加扫描线效果 */}
+      {/* Add scan line effect */}
       <div className="absolute inset-0 pointer-events-none">
         <div 
           className="w-full h-0.5 bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-60 animate-pulse"

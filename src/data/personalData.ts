@@ -68,7 +68,7 @@ export const skills: Skill[] = [
 ];
 
 export const contactInfo: ContactInfo = {
-  email: "gustav.james@example.com",
+  email: "gustavjames382@gmail.com",
   phone: "+1 825-963-1088",
   location: "Edmonton, Canada",
   social: {

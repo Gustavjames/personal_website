@@ -1,3 +1,0 @@
-src/app/api/system/route.ts
-src/app/api/system/ws/route.ts
-src/lib/mongodb.ts

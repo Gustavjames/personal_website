@@ -7,7 +7,7 @@ interface SpamBlockedProps {
 }
 
 const SpamBlocked = ({ onReset }: SpamBlockedProps) => {
-  const [countdown, setCountdown] = useState(60); // 60秒冷却时间
+  const [countdown, setCountdown] = useState(60); // 60 second cooldown time
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const SpamBlocked = ({ onReset }: SpamBlockedProps) => {
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
-      {/* 背景动画效果 */}
+      {/* Background animation effect */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 left-20 w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
         <div className="absolute top-40 right-40 w-1 h-1 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
@@ -44,42 +44,42 @@ const SpamBlocked = ({ onReset }: SpamBlockedProps) => {
       </div>
 
       <div className="text-center glass rounded-3xl p-12 hacker-glow relative z-10 max-w-md mx-4">
-        {/* 警告图标 */}
+        {/* Warning icon */}
         <div className="text-6xl mb-6 animate-bounce">
           ⚠️
         </div>
         
-        {/* 主标题 */}
+        {/* Main title */}
         <div className="terminal-text text-red-400 text-2xl mb-4 font-bold">
-          &gt; 检测到异常行为
+          &gt; Abnormal behavior detected
         </div>
         
-        {/* 副标题 */}
+        {/* Subtitle */}
         <div className="text-orange-300 text-lg mb-6">
-          您刷新太频繁了！
+          You're refreshing too frequently!
         </div>
         
-        {/* 详细信息 */}
+        {/* Details */}
         <div className="text-gray-300 mb-8 space-y-2">
           <p className="text-sm">
-            在10秒内检测到5次或更多刷新操作
+            Detected 5 or more refresh operations within 10 seconds
           </p>
           <p className="text-sm">
-            系统已暂时限制您的访问
+            System has temporarily restricted your access
           </p>
         </div>
         
-        {/* 倒计时 */}
+        {/* Countdown */}
         <div className="mb-8">
           <div className="text-4xl font-bold text-red-400 mb-2">
             {countdown}s
           </div>
           <div className="text-sm text-gray-400">
-            请等待冷却时间结束
+            Please wait for cooldown to end
           </div>
         </div>
         
-        {/* 进度条 */}
+        {/* Progress bar */}
         <div className="w-full bg-gray-700 rounded-full h-2 mb-6">
           <div 
             className="bg-gradient-to-r from-red-500 to-orange-500 h-2 rounded-full transition-all duration-1000"
@@ -87,14 +87,14 @@ const SpamBlocked = ({ onReset }: SpamBlockedProps) => {
           ></div>
         </div>
         
-        {/* 提示信息 */}
+        {/* Tips */}
         <div className="text-xs text-gray-500 space-y-1">
-          <p>• 请避免频繁刷新页面</p>
-          <p>• 如有问题请联系管理员</p>
-          <p>• 冷却时间结束后将自动恢复访问</p>
+          <p>• Please avoid frequent page refreshes</p>
+          <p>• Contact administrator if you have issues</p>
+          <p>• Access will be automatically restored after cooldown ends</p>
         </div>
         
-        {/* 装饰性边框 */}
+        {/* Decorative border */}
         <div className="absolute inset-0 rounded-3xl border-2 border-red-400/30 animate-pulse"></div>
       </div>
     </div>
