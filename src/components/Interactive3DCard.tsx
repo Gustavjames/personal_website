@@ -96,19 +96,19 @@ const Interactive3DCard = ({ title, description, icon, gradient, tech, status, i
             {/* Header */}
             <div className="flex items-center justify-between mb-4">
               <motion.div
-                className="w-12 h-12 bg-gradient-to-br from-green-400 to-cyan-400 rounded-lg flex items-center justify-center hacker-glow"
+                className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center hacker-glow"
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               >
-                {icon}
+                <span className="text-black terminal-text font-bold">[G]</span>
               </motion.div>
               <div className="text-right">
-                <div className="text-xs text-cyan-400 terminal-text mb-1">
+                <div className="text-xs text-green-400 terminal-text mb-1">
                   &gt; STATUS
                 </div>
                 <div className={`text-sm font-bold terminal-text ${
                   status === 'IN_DEVELOPMENT' ? 'text-yellow-400' : 
-                  status === 'ACTIVE' ? 'text-green-400' : 'text-purple-400'
+                  status === 'ACTIVE' ? 'text-green-400' : 'text-green-300'
                 }`}>
                   {status}
                 </div>
@@ -116,12 +116,12 @@ const Interactive3DCard = ({ title, description, icon, gradient, tech, status, i
             </div>
 
             {/* Title */}
-            <h3 className="text-xl font-bold text-white terminal-text mb-3">
+            <h3 className="text-xl font-bold text-green-400 terminal-text mb-3">
               {title}
             </h3>
 
             {/* Description */}
-            <p className="text-gray-300 text-sm leading-relaxed flex-1">
+            <p className="text-green-300 text-sm leading-relaxed flex-1 terminal-text">
               {description}
             </p>
 
@@ -193,24 +193,24 @@ const Interactive3DCardGrid = () => {
     {
       title: "Secure Dating App",
       description: "A privacy-focused dating application with advanced safety features, real-time verification, and secure communication protocols.",
-      icon: <Shield className="text-black" size={24} />,
-      gradient: "bg-gradient-to-br from-green-600 to-cyan-600",
+      icon: null,
+      gradient: "bg-gradient-to-br from-green-600 to-green-800",
       tech: ["React.js", "Node.js", "MongoDB", "Socket.io", "JWT", "Encryption"],
       status: "IN_DEVELOPMENT"
     },
     {
       title: "Network Security Tool",
       description: "Advanced network monitoring and security analysis tool with real-time threat detection and automated response systems.",
-      icon: <Lock className="text-black" size={24} />,
-      gradient: "bg-gradient-to-br from-cyan-600 to-purple-600",
+      icon: null,
+      gradient: "bg-gradient-to-br from-green-700 to-green-900",
       tech: ["Python", "Kali Linux", "Wireshark", "Docker", "Redis"],
       status: "ACTIVE"
     },
     {
       title: "Cybersecurity Dashboard",
       description: "Comprehensive security monitoring dashboard with threat intelligence, vulnerability assessment, and incident response tools.",
-      icon: <Terminal className="text-black" size={24} />,
-      gradient: "bg-gradient-to-br from-purple-600 to-pink-600",
+      icon: null,
+      gradient: "bg-gradient-to-br from-green-800 to-black",
       tech: ["Next.js", "TypeScript", "PostgreSQL", "GraphQL", "Redis"],
       status: "DEPLOYED"
     }

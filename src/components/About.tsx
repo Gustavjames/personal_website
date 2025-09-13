@@ -27,9 +27,9 @@ const About = () => {
             <h3 className="text-2xl font-bold text-white mb-6 terminal-text">
               &gt; CRAFTING_DIGITAL_SOLUTIONS_WITH_SECURITY_IN_MIND
             </h3>
-            <div className="space-y-4 text-white leading-relaxed">
-              <p className="text-gray-300">{personalInfo.about}</p>
-              <p className="text-gray-400">
+            <div className="space-y-4 text-green-300 leading-relaxed">
+              <p className="terminal-text">{personalInfo.about}</p>
+              <p className="text-green-400 terminal-text">
                 I firmly believe that good code is not just about functionality, but also about security and elegance.
                 Every line of code carries the pursuit of perfection, and every pixel reflects an understanding of both beauty and security.
               </p>
@@ -38,11 +38,11 @@ const About = () => {
 
           <div className="flex justify-center">
             <div className="w-96 h-96 glass rounded-2xl flex items-center justify-center hacker-glow">
-              <div className="text-center text-white">
-                <div className="text-6xl mb-4 terminal-text">💻</div>
+              <div className="text-center text-green-400">
+                <div className="text-6xl mb-4 terminal-text">[G]</div>
                 <h4 className="text-2xl font-bold mb-2 terminal-text">CODE_AS_ART</h4>
-                <p className="text-gray-400 terminal-text">Every line of code is creation</p>
-                <div className="mt-4 text-sm text-gray-500 terminal-text">
+                <p className="text-green-300 terminal-text">Every line of code is creation</p>
+                <div className="mt-4 text-sm text-green-500 terminal-text">
                   &gt; STATUS: ONLINE<br />
                   &gt; SECURITY_LEVEL: MAXIMUM<br />
                   &gt; READY_FOR_COLLABORATION

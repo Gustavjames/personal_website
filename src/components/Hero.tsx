@@ -44,18 +44,18 @@ const Hero = ({ user, onLogin }: HeroProps) => {
               <a
                 href="#projects"
                 onClick={(e) => { e.preventDefault(); document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' }); }}
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-all duration-300 hacker-glow"
+                className="inline-flex items-center justify-center px-8 py-4 bg-green-600 text-black font-bold rounded-lg hover:bg-green-500 transition-all duration-300 hacker-glow terminal-text"
               >
                 &gt; VIEW_PROJECTS
               </a>
               {user ? (
-                <div className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-bold rounded-lg terminal-text">
+                <div className="inline-flex items-center justify-center px-8 py-4 border-2 border-green-400 text-green-400 font-bold rounded-lg terminal-text">
                   &gt; WELCOME_BACK_{user.name.toUpperCase()}
                 </div>
               ) : (
                 <button
                   onClick={onLogin}
-                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-black transition-all duration-300 terminal-text"
+                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-green-400 text-green-400 font-bold rounded-lg hover:bg-green-400 hover:text-black transition-all duration-300 terminal-text"
                 >
                   &gt; LOGIN_TO_CONTINUE
                 </button>
@@ -66,24 +66,24 @@ const Hero = ({ user, onLogin }: HeroProps) => {
           <div className="flex justify-center lg:justify-end">
             <div className="w-80 h-80 glass rounded-3xl p-8 hacker-glow">
               <div className="text-center">
-                <div className="w-32 h-32 bg-gradient-to-br from-white to-gray-300 rounded-full mx-auto mb-6 flex items-center justify-center hacker-glow">
+                <div className="w-32 h-32 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-6 flex items-center justify-center hacker-glow">
                   <span className="text-6xl font-bold text-black terminal-text">G</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2 terminal-text">{personalInfo.name}</h3>
-                <p className="text-gray-400 mb-6 terminal-text">{personalInfo.title}</p>
+                <h3 className="text-2xl font-bold text-green-400 mb-2 terminal-text">{personalInfo.name}</h3>
+                <p className="text-green-300 mb-6 terminal-text">{personalInfo.title}</p>
                 
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
-                    <div className="text-2xl font-bold text-white terminal-text">{personalInfo.stats.projects}+</div>
-                    <div className="text-sm text-gray-400 terminal-text">PROJECTS</div>
+                    <div className="text-2xl font-bold text-green-400 terminal-text">{personalInfo.stats.projects}+</div>
+                    <div className="text-sm text-green-300 terminal-text">PROJECTS</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-white terminal-text">{personalInfo.stats.experience}</div>
-                    <div className="text-sm text-gray-400 terminal-text">EXPERIENCE</div>
+                    <div className="text-2xl font-bold text-green-400 terminal-text">{personalInfo.stats.experience}</div>
+                    <div className="text-sm text-green-300 terminal-text">EXPERIENCE</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-white terminal-text">{personalInfo.stats.satisfaction}%</div>
-                    <div className="text-sm text-gray-400 terminal-text">SUCCESS</div>
+                    <div className="text-2xl font-bold text-green-400 terminal-text">{personalInfo.stats.satisfaction}%</div>
+                    <div className="text-sm text-green-300 terminal-text">SUCCESS</div>
                   </div>
                 </div>
               </div>
