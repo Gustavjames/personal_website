@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as si from 'systeminformation';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     // 获取CPU信息
     const cpu = await si.cpu();

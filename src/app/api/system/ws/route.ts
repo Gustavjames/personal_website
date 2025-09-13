@@ -4,7 +4,7 @@ import * as si from 'systeminformation';
 
 let wss: WebSocketServer | null = null;
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   if (!wss) {
     wss = new WebSocketServer({ port: 8080 });
     
@@ -33,7 +33,8 @@ export async function GET(request: NextRequest) {
   return new Response('WebSocket server started', { status: 200 });
 }
 
-async function sendSystemData(ws: WebSocket) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function sendSystemData(ws: any) {
   try {
     const cpu = await si.cpu();
     const cpuCurrentSpeed = await si.cpuCurrentSpeed();
